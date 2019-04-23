@@ -16,18 +16,21 @@ import java.io.IOException;
  */
 @WebServlet("/update")
 public class UpdateController extends HttpServlet {
+    private static final String LIST = "/list";
+    private static final String ID = "id";
+    private static final String USER = "user";
     private UserDao userDao = UserDaoImpl.getInstance();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String userId = req.getParameter("id");
+        String userId = req.getParameter(ID);
         if (userId == null) {
-            req.getRequestDispatcher("/list").forward(req, resp);
+            req.getRequestDispatcher(LIST).forward(req, resp);
         } else {
             Long id = Long.valueOf(userId);
             User user = userDao.getById(id);
-            req.setAttribute("user", user);
-            req.getRequestDispatcher("/list").forward(req, resp);
+            req.setAttribute(USER, user);
+            req.getRequestDispatcher(LIST).forward(req, resp);
         }
     }
 }

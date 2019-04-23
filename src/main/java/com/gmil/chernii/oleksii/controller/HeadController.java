@@ -17,13 +17,15 @@ import java.util.List;
  */
 @WebServlet("/list")
 public class HeadController extends HttpServlet {
+    private static final String USERLIST = "userlist";
+    private static final String INDEX = "index.jsp";
     private UserDao userDao = UserDaoImpl.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<User> userList = userDao.getAllUsers();
-        req.setAttribute("userslist", userList);
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
+        req.setAttribute(USERLIST, userList);
+        req.getRequestDispatcher(INDEX).forward(req, resp);
     }
 
     @Override

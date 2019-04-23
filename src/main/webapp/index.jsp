@@ -76,7 +76,7 @@
                     <th>Update</th>
                     <th>Delete</th>
                 </tr>
-                <c:forEach items="${userslist}" var="user">
+                <c:forEach items="${userlist}" var="user">
                     <tr>
                         <td>${user.id}</td>
                         <td>${user.name}</td>

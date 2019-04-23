@@ -15,17 +15,20 @@ import java.io.IOException;
  */
 @WebServlet("/delete")
 public class DeleteController extends HttpServlet {
+    private static final String LIST = "/list";
+    private static final String ID = "id";
+
     private UserDao userDao = UserDaoImpl.getInstance();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String userId = req.getParameter("id");
+        String userId = req.getParameter(ID);
         if (userId == null) {
-            req.getRequestDispatcher("/list").forward(req, resp);
+            req.getRequestDispatcher(LIST).forward(req, resp);
         } else {
             Long id = Long.valueOf(userId);
             userDao.deleteById(id);
-            resp.sendRedirect(req.getContextPath() + "/list");
+            resp.sendRedirect(req.getContextPath() + LIST);
         }
     }
 }

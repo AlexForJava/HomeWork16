@@ -16,19 +16,25 @@ import java.io.IOException;
  */
 @WebServlet("/create")
 public class CreateController extends HttpServlet {
+    private static final String LIST = "/list";
+    private static final String ID = "id";
+    private static final String LOGIN = "login";
+    private static final String PASSWORD = "password";
+    private static final String AGE = "age";
+
     private UserDao userDao = UserDaoImpl.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/list").forward(req, resp);
+        req.getRequestDispatcher(LIST).forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String userId = req.getParameter("id");
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
-        Integer age = Integer.valueOf(req.getParameter("age"));
+        String userId = req.getParameter(ID);
+        String login = req.getParameter(LOGIN);
+        String password = req.getParameter(PASSWORD);
+        Integer age = Integer.valueOf(req.getParameter(AGE));
         User user = new User()
                 .setLogin(login)
                 .setPassword(password)
@@ -39,6 +45,6 @@ public class CreateController extends HttpServlet {
             user.setId(Long.valueOf(userId));
             userDao.update(user);
         }
-        resp.sendRedirect(req.getContextPath() + "/list");
+        resp.sendRedirect(req.getContextPath() + LIST);
     }
 }
