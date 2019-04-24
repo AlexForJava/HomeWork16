@@ -12,9 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Created by Space on 23.04.2019.
- */
 @WebServlet("/list")
 public class HeadController extends HttpServlet {
     private static final String USERLIST = "userlist";

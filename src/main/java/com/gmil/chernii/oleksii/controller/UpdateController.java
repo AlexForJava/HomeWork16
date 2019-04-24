@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by Space on 23.04.2019.
- */
 @WebServlet("/update")
 public class UpdateController extends HttpServlet {
     private static final String LIST = "/list";
@@ -28,7 +25,7 @@ public class UpdateController extends HttpServlet {
             req.getRequestDispatcher(LIST).forward(req, resp);
         } else {
             Long id = Long.valueOf(userId);
-            User user = userDao.getById(id);
+            User user = userDao.getById(id).get();
             req.setAttribute(USER, user);
             req.getRequestDispatcher(LIST).forward(req, resp);
         }

@@ -13,9 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * Created by Space on 23.04.2019.
- */
 @Data
 @Entity
 @NoArgsConstructor

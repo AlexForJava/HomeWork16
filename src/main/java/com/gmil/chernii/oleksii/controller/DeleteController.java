@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by Space on 23.04.2019.
- */
 @WebServlet("/delete")
 public class DeleteController extends HttpServlet {
     private static final String LIST = "/list";

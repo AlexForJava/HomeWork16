@@ -3,14 +3,12 @@ package com.gmil.chernii.oleksii.dao;
 import com.gmil.chernii.oleksii.entity.User;
 
 import java.util.List;
+import java.util.Optional;
 
-/**
- * Created by Space on 23.04.2019.
- */
 public interface UserDao {
     void insert(User user);
 
-    User getById(Long id);
+    Optional<User> getById(Long id);
 
     void update(User user);
 

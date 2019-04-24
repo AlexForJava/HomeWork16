@@ -7,10 +7,8 @@ import org.hibernate.Session;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-/**
- * Created by Space on 23.04.2019.
- */
 @Log4j
 public class UserDaoImpl implements UserDao {
     private volatile static UserDaoImpl INSTANCE = null;
@@ -27,14 +25,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getById(Long id) {
-        User user = new User();
+    public Optional<User> getById(Long id) {
+        Optional<User> userOptional = Optional.empty();
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            user = session.find(User.class, id);
+            userOptional = Optional.ofNullable(session.find(User.class, id));
         } catch (Exception e) {
             log.error(e.getMessage());
         }
-        return user;
+        return userOptional;
     }
 
     @Override
@@ -68,7 +66,6 @@ public class UserDaoImpl implements UserDao {
         } catch (Exception e) {
             log.error(e.getMessage());
         }
-
         return users;
     }
 
@@ -82,6 +79,4 @@ public class UserDaoImpl implements UserDao {
         }
         return INSTANCE;
     }
-
-
 }
